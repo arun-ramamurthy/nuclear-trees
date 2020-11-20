@@ -99,9 +99,8 @@ plot_buildout <- function(buildout, use_plotly = T) {
     else
       expression(paste("Years since ", t[0]))
   p <- buildout %>%
-    ggplot(aes(x = 0, year, size = cost, col = tree_id)) +
-    geom_point(aes(group = paste(tree_id, within_generation_id)), position = position_dodge(width = 1/8), shape = 15) +
-    scale_size(range = c(3, 6)) +
+    ggplot(aes(x = 0, year, col = tree_id)) +
+    geom_point(aes(group = paste(tree_id, within_generation_id)), position = position_dodge(width = 1/8), shape = 15, size = 3) +
     theme_minimal() +
     theme(axis.ticks.x = element_blank(), axis.text.x = element_blank(), legend.position = "none") +
     labs(title = paste0("Tree Diagram of Simulated Buildout of ", num_trees, " plants.\nTotal Cost by Year ", max_year, ": $", prettyNum(total_cost, big.mark = ","), "B"),
