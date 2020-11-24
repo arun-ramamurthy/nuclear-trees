@@ -3,7 +3,7 @@
 PROJECTION_HORIZON_YEAR <- 24
 COST_BY_GENERATION_IN_BILLIONS <- c("0" = 20, "1" = 20, "2" = 16, 12)
 NEW_REACTORS_BY_GENERATION <- c("1" = 1, "2" = 2, "3" = 4, 8)
-NEW_PROJECT_DELAY_IN_YEARS <- 4
+NEW_PROJECT_DELAY_IN_YEARS <- 3
 MAX_REACTOR_PROJECTS_PER_YEAR <- 8
 NUM_TREES <- 3
 STAGGER_TIME_IN_YEARS <- 1
@@ -33,7 +33,7 @@ simulate_buildout <- function(
   }
   prune_excess_reactor_projects <- function(buildout) {
     buildout %>%
-      group_by(year) %>%
+      group_by(as.integer(year)) %>%
       mutate(year_id = 1:n()) %>%
       ungroup() %>%
       filter(year_id <= max_reactor_projects_per_year) %>%
